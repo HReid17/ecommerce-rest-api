@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth.routes.js';
+import productRoutes from './routes/products.routes.js'
 import { pool } from './db/pool.js';
 
 dotenv.config()
@@ -28,5 +29,6 @@ app.get("/db-health", async (req, res) => {
 
 // Routes
 app.use("/auth", authRoutes)
+app.use("/products", productRoutes)
 
 export default app;
