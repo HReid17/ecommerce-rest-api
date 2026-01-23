@@ -16,24 +16,22 @@ export const registerController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
-    try {
-        const user = await loginUser(req.body);
+  try {
+    const user = await loginUser(req.body);
 
-        const token = jwt.sign(
-            {id: user.id, role: user.role},
-            process.env.JWT_SECRET,
-            { expiresIn: "1h" }
-        );
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
-        res.json({ user, token });
-
-        return res.status(200).json({ user });
-    } catch (err) {
-        if (err.message === "INVALID_CREDENTIALS") {
-            return res.status(401).json({ message: "Invalid email or password" });
-        }
-
-        console.error(err);
-        return res.status(500).json({ message: "Server error" });
+    return res.status(200).json({ user, token });
+  } catch (err) {
+    if (err.message === "INVALID_CREDENTIALS") {
+      return res.status(401).json({ message: "Invalid email or password" });
     }
+
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
 };

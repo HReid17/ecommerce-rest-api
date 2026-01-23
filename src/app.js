@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.routes.js';
@@ -10,8 +9,6 @@ import checkoutRoutes from "./routes/checkout.routes.js";
 import adminOrdersRoutes from "./routes/adminOrders.routes.js";
 
 import { pool } from './db/pool.js';
-
-dotenv.config()
 
 const app = express();
 
