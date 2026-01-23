@@ -13,7 +13,7 @@ import {
     validateUpdateProduct
 } from "../validators/products.validator.js";
 
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { requireAdmin, requireAuth } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -24,12 +24,12 @@ router.get("/", getAllProductsController);
 router.get("/:id", getProductByIdController);
 
 // Create a new product
-router.post("/", requireAuth, validateCreateProduct, createProductController);
+router.post("/", requireAuth, requireAdmin, validateCreateProduct, createProductController);
 
 // Update a product
-router.put("/:id", requireAuth, validateUpdateProduct, updateProductController);
+router.put("/:id", requireAuth, requireAdmin, validateUpdateProduct, updateProductController);
 
 // Deactivate a product
-router.delete("/:id", requireAuth, deleteProductController);
+router.delete("/:id", requireAuth, requireAdmin, deleteProductController);
 
 export default router;

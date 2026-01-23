@@ -6,7 +6,8 @@ import productRoutes from './routes/products.routes.js';
 import usersRoutes from './routes/users.routes.js';
 import cartRoutes from './routes/carts.routes.js';
 import orderRoutes from './routes/orders.routes.js';
-import checkoutRoutes from "./routes/checkout.routes.js";;
+import checkoutRoutes from "./routes/checkout.routes.js";
+import adminOrdersRoutes from "./routes/adminOrders.routes.js";
 
 import { pool } from './db/pool.js';
 
@@ -39,5 +40,6 @@ app.use("/users", usersRoutes)
 app.use("/cart", cartRoutes)
 app.use("/orders", orderRoutes)
 app.use("/checkout", checkoutRoutes);
+app.use("/admin/orders", adminOrdersRoutes);
 
 export default app;
