@@ -2,8 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import authRoutes from './routes/auth.routes.js';
-import productRoutes from './routes/products.routes.js'
-import usersRoutes from './routes/users.routes.js'
+import productRoutes from './routes/products.routes.js';
+import usersRoutes from './routes/users.routes.js';
+import cartRoutes from './routes/carts.routes.js';
 import { pool } from './db/pool.js';
 
 dotenv.config()
@@ -32,5 +33,6 @@ app.get("/db-health", async (req, res) => {
 app.use("/auth", authRoutes)
 app.use("/products", productRoutes)
 app.use("/users", usersRoutes)
+app.use("/cart", cartRoutes)
 
 export default app;
