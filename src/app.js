@@ -1,5 +1,8 @@
 import express from 'express';
 
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger.js"; 
+
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.routes.js';
 import usersRoutes from './routes/users.routes.js';
@@ -13,6 +16,12 @@ import { pool } from './db/pool.js';
 const app = express();
 
 app.use(express.json());
+
+// When someone visits /api-docs, show them a website that reads the instruction manual (swaggerSpec) and displays it.
+// Express Runs swaggerUi.serve - loads the Swagger UI webpage
+// Runs swaggerUi.setup(swaggerSpec) - gives that page my API’s JSON description
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // API Health check
 app.get("/health", (req, res) => {

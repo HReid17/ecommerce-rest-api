@@ -1,5 +1,4 @@
-import { config } from "dotenv";
-config(); // loads .env
+import "dotenv/config"; 
 
 import app from "./app.js";
 
